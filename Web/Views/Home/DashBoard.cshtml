@@ -1,0 +1,62 @@
+﻿@model Core.Models.DashboardReportViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "_Layout";
+}
+
+<div class="nk-block-head nk-block-head-sm">
+    <div class="nk-block-between">
+        <div class="nk-block-head-content">
+            <h3 class="nk-block-title page-title">Dashboard</h3>
+            <div class="nk-block-des text-soft">
+                <p>Welcome to Dashboard.</p>
+            </div>
+        </div><!-- .nk-block-head-content -->
+    </div><!-- .nk-block-between -->
+</div><!-- .nk-block-head -->
+<div class="nk-block">
+    <div class="row g-gs">
+        <div class="col-md-4">
+            <div class="nk-order-ovwg-data buy bg-white border-primary">
+                <h6 class="card-title">@DateTime.Now.ToString("MMMM, yyyy") - Monthly Total Payments</h6>
+                <div class="amount text-primary">@Model.CurrentMonthTotalPayment.ToString("#,##.00") <small class="currenct currency-usd">NGN</small></div>
+                <div class="info">Last month <strong>@Model.PreviousMonthTotalPayment.ToString("#,##.00") <span class="currenct currency-usd">NGN</span></strong></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="nk-order-ovwg-data sell bg-white border-primary">
+                <h6 class="card-title">@DateTime.Now.ToString("yyyy") - Yearly Total Payments</h6>
+                <div class="amount text-primary">@Model.CurrentYearTotalPayment.ToString("#,##.00") <small class="currency currency-usd">NGN</small></div>
+                <div class="info">Last year <strong>@Model.PreviousYearTotalPayment.ToString("#,##.00") <span class="currency currency-usd">NGN</span></strong></div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card card-bordered h-100">
+                <div class="card-inner">
+                    <div class="nk-order-ovwg">
+                        <div class="row g-4 align-end">
+                            <div class="col-md-3">
+                                <div class="nk-order-ovwg-data buy bg-white border-0 shadow-sm">
+                                    <h6 class="card-title">Total Number of Members</h6>
+                                    <div class="amount">@Model.NumberOfMembers.ToString("#,##")</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="nk-order-ovwg-data buy bg-white border-0 shadow-sm">
+                                    <h6 class="card-title">No. of States Covered</h6>
+                                    <div class="amount">@Model.NumberOfStates.ToString("#,##")</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="nk-order-ovwg-data buy bg-white border-0 shadow-sm">
+                                    <h6 class="card-title">No. of Local Governments Covered</h6>
+                                    <div class="amount">@Model.NumberOfLGA.ToString("#,##")</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .nk-order-ovwg -->
+                </div><!-- .card-inner -->
+            </div><!-- .card -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .nk-block -->

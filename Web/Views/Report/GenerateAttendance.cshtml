@@ -1,0 +1,191 @@
+﻿@model Core.Models.AttendenceReportViewModel
+@using Core.Constants
+
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="example-alert">
+        <div class="alert alert-success alert-icon">
+            <em class="icon ni ni-alert-circle"></em> <strong>Attention! </strong> @TempData["Success"].ToString() <button class="close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("Error"))
+{
+    <div class="example-alert">
+        <div class="alert alert-danger alert-icon">
+            <em class="icon ni ni-alert-circle"></em> <strong>Attention! </strong> @TempData["Error"].ToString() <button class="close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+
+<div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+    <div class="nk-block-head-content text-center">
+        <h2 class="nk-block-title fw-normal">Members Attendance</h2>
+        <div class="nk-block-des">
+            <p class="lead">Generate Attendance!</p>
+        </div>
+    </div>
+</div><!-- .nk-block-head -->
+
+<div class="nk-block">
+    <div class="card card-bordered">
+        <div class="card-inner card-inner-xl">
+            <article class="entry">
+                @if (User.IsInRole(RoleConstants.Coordinator))
+                {
+
+
+                    <form method="post" onsubmit="ConfirmSubmit(this, event)" asp-action="GenerateAttendance" asp-controller="Report">
+                        <input hidden asp-for="LgaId" value="@ViewBag.adminlgaID" />
+                        <div class="d-flex justify-content-center">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Print LGA Attendance</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                }
+                else
+                {
+                    <form method="post" onsubmit="ConfirmSubmit(this, event)" asp-action="GenerateAttendance" asp-controller="Report">
+                        <div class="row g-3">
+
+                            @if (User.IsInRole(RoleConstants.SuperAdmin))
+                            {
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">State</label>
+                                        <div class="form-control-wrap">
+                                            <select asp-items="ViewBag.states" id="StateId" asp-for="StateId" class="form-select"  onchange="GetLgst(this, 'LocalGovernmentId')">
+                                                <option value="">All States</option>
+                                                <option selected disabled>Select State</option>
+                                                @foreach (var state in (SelectList)ViewBag.states)
+                                                {
+                                                    <option value="@state.Value">@state.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Local Government</label>
+                                        <div class="form-control-wrap">
+                                            <select asp-for="LgaId" id="LocalGovernmentId"  class="form-select">
+                                                <option disabled selected>Select LGA</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            } 
+                            @if (User.IsInRole(RoleConstants.Director))
+                            {
+                                <input hidden asp-for="StateId" value="@ViewBag.stateId" />
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Local Government</label>
+                                        <div class="form-control-wrap">
+                                            <select asp-for="LgaId" id="LocalGovernmentId" class="form-select" >
+                                                <option disabled selected>Select LGA</option>
+                                                @if (ViewData["lgas"] != null)
+                                                {
+                                                    @foreach (var lga in (SelectList)ViewData["lgas"])
+                                                    {
+                                                        <option value="@lga.Value">@lga.Text</option>
+                                                    }
+                                                    <option value="">All Local Governments</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Generate</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                }
+            </article>
+        </div>
+    </div>
+</div><!-- .nk-block -->
+@section scripts {
+    <script>
+        function GetLgst(senderelement, receiverelement) {
+            var sId = senderelement.value;
+            var allStatesOption = ""; // Value of the "All States" option
+
+            if (sId === allStatesOption) {
+                // Clear the LGA dropdown if "All States" is selected
+                $(`#${receiverelement}`).empty();
+                $(`#${receiverelement}`).append('<option disabled selected>Select LGA</option>');
+                return;
+            }
+
+            if (sId === null || sId === "") {
+                return;
+            }
+
+            Swal.showLoading();
+            $.ajax({
+                url: '/api/v1/v2/getLga',
+                type: 'GET',
+                data: {
+                    SId: sId
+                },
+                success: function (response) {
+                    console.log(response);
+
+                    $(`#${receiverelement}`).empty();
+                    $(`#${receiverelement}`).append('<option disabled selected>Select LGA</option>');
+                    $.each(response.lgas, function (index, item) {
+                        $(`#${receiverelement}`).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    // Add the "All Local Governments" option after populating dynamic options
+                    $(`#${receiverelement}`).append('<option value="all">All Local Governments</option>');
+                },
+                error: function (response) {
+                    Swal.close();
+                    Swal.fire("Request failed", "Processing failed due to network issues", "error");
+                },
+                complete: function (done) {
+                    Swal.close();
+                }
+            });
+        }
+
+
+        function ConfirmSubmit(form, event) {
+            event.preventDefault();
+
+            if (form.checkValidity()) {
+                Swal.fire({
+                    title: "Generate attendance?",
+                    text: "Would you like to generate this attendance sheet?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Generate!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
+        }
+        // Event listener to clear LGA when "All States" is selected
+        $('#StateId').change(function () {
+            var selectedValue = $(this).val();
+            if (selectedValue === "") {
+                $('#LocalGovernmentId').empty();
+                $('#LocalGovernmentId').append('<option disabled selected>Select LGA</option>');
+            }
+        });
+    </script>
+}

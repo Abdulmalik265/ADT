@@ -1,0 +1,91 @@
+﻿@using Core.Constants
+
+<div class="nk-header nk-header-fixed is-light">
+    <div class="container-fluid">
+        <div class="nk-header-wrap">
+            <div class="nk-menu-trigger d-xl-none ms-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+            </div>
+            <div class="nk-header-brand d-xl-none">
+                <a href="/" class="logo-link">
+                    <img class="logo-light logo-img logo-img-lg" src="~/images/kano_map.png" alt="EMS">
+                </a>
+            </div><!-- .nk-header-brand -->
+
+            <div class="nk-header-news d-none d-xl-block">
+                <div class="nk-news-list">
+                    <a class="nk-news-item" href="https://google.com">
+                        <div class="nk-news-icon">
+                            <em class="icon ni ni-card-view"></em>
+                        </div>
+                        <div class="nk-news-text">
+                            <p style="width: fit-content !important;">Sponsored by </p>
+                            <em class="icon ni ni-external"></em>
+                        </div>
+                    </a>
+                </div>
+            </div><!-- .nk-header-news -->
+
+            <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="user-toggle">
+                                <div class="user-avatar sm">
+                                    <em class="icon ni ni-user-alt"></em>
+                                </div>
+                                <div class="user-info d-none d-md-block">
+                                    @{
+                                        string roleName;
+                                        if (User.IsInRole(RoleConstants.SuperAdmin))
+                                        {
+                                            roleName = "Super Admin";
+                                        }
+                                        else if (User.IsInRole(RoleConstants.Director))
+                                        {
+                                            roleName = "Director";
+                                        }
+                                        else if (User.IsInRole(RoleConstants.Coordinator))
+                                        {
+                                            roleName = "Coordinator";
+                                        }
+                                        else
+                                        {
+                                            roleName = "Visitor";
+                                        }
+                                    }
+                                    <div class="user-status">@roleName</div>
+                                    <div class="user-name dropdown-indicator">@User.Identity?.Name</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        <span>AB</span>
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">@User.Identity?.Name</span>
+                                        <span class="sub-text">@roleName</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li>
+                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"  method="post">
+                                            <button type="submit" class="btn btn-link link-danger px-0 fw-bold">
+                                                <em class="icon ni ni-signout"></em><span>Sign out</span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li><!-- .dropdown -->
+                </ul><!-- .nk-quick-nav -->
+            </div><!-- .nk-header-tools -->
+        </div><!-- .nk-header-wrap -->
+    </div><!-- .container-fliud -->
+</div>

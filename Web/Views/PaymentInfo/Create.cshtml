@@ -1,0 +1,81 @@
+﻿@using Core.Enum
+@model Core.Models.PaymentInfoViewModel
+@{
+    ViewData["Title"] = "New Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <p style="color:#0971FE;">Fill the form below to add a new Payment. Hint: please provide accurate information concerning the Payment.</p>
+
+            </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+    </div><!-- .nk-block-head -->
+    <div class="card card-bordered">
+        <div class="card-inner ">
+            <form method="post" asp-action ="Create" asp-controller ="PaymentInfo" id="submitform" enctype="multipart/form-data" onsubmit="ConfirmSubmit(this, event)">
+                <div class="row gy-4">
+                    <input hidden name="Id" value="@ViewBag.id" />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">First Name @* <span style="color:red;"></span> *@</label>
+                            <div class="form-control-wrap">
+                                <select type="text" class="form-select" required asp-for="Month" asp-items="Html.GetEnumSelectList<Month>()" placeholder="Month" ></select>
+                                <span asp-validation-for="Month" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">First Name @* <span style="color:red;"></span> *@</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" required asp-for="Amount" placeholder="Amount"/>
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                    <div class="col-sm-12 col-xxl-3">
+                        <div class="form-group">
+                            <button type="submit" id="subbtn" class="btn btn-primary btn-lg">Add New Member</button>
+                            <a type="button" asp-action="Index" asp-controller="PaymentInfo" class="btn btn-danger btn-lg">Cancel</a>
+                        </div>
+                    </div><!--col-->
+
+                </div><!--row-->
+
+            </form>
+        </div><!-- .card-inner-group -->
+    </div><!-- .card -->
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+
+        function ConfirmSubmit(form, event) {
+            event.preventDefault();
+            if (form.checkValidity()) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Would you like to add this Member?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Add!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
+        }
+    </script>
+
+}

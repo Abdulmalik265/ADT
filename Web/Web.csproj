@@ -1,0 +1,110 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\css\libs\**" />
+    <Content Remove="wwwroot\css\libs\**" />
+    <EmbeddedResource Remove="wwwroot\css\libs\**" />
+    <None Remove="wwwroot\css\libs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\dashlite.css" />
+    <Content Remove="wwwroot\css\dashlite.min.css" />
+    <Content Remove="wwwroot\css\dashlite.rtl.css" />
+    <Content Remove="wwwroot\css\dashlite.rtl.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\libs\bootstrap-icons.css" />
+    <None Include="wwwroot\css\libs\fontawesome-icons.css" />
+    <None Include="wwwroot\css\libs\jstree.css" />
+    <None Include="wwwroot\css\libs\themify-icons.css" />
+    <None Include="wwwroot\fonts\bootstrap-icons.woff2" />
+    <None Include="wwwroot\fonts\DMSans-Bold.woff2" />
+    <None Include="wwwroot\fonts\DMSans-Medium.woff2" />
+    <None Include="wwwroot\fonts\DMSans-Regular.woff2" />
+    <None Include="wwwroot\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\fonts\Nioicon.svg" />
+    <None Include="wwwroot\fonts\Nunito-Bold.woff2" />
+    <None Include="wwwroot\fonts\Nunito-Regular.woff2" />
+    <None Include="wwwroot\fonts\Roboto-Bold.woff2" />
+    <None Include="wwwroot\fonts\Roboto-Light.woff2" />
+    <None Include="wwwroot\fonts\Roboto-Medium.woff2" />
+    <None Include="wwwroot\fonts\Roboto-Regular.woff2" />
+    <None Include="wwwroot\fonts\summernote.woff2" />
+    <None Include="wwwroot\fonts\themify.svg" />
+    <None Include="wwwroot\js\apps\calendar.js" />
+    <None Include="wwwroot\js\apps\chats.js" />
+    <None Include="wwwroot\js\apps\file-manager.js" />
+    <None Include="wwwroot\js\apps\inbox.js" />
+    <None Include="wwwroot\js\apps\kanban.js" />
+    <None Include="wwwroot\js\apps\messages.js" />
+    <None Include="wwwroot\js\bundle.js" />
+    <None Include="wwwroot\js\bundles.js" />
+    <None Include="wwwroot\js\charts\chart-analytics.js" />
+    <None Include="wwwroot\js\charts\chart-crypto.js" />
+    <None Include="wwwroot\js\charts\chart-ecommerce.js" />
+    <None Include="wwwroot\js\charts\chart-lms.js" />
+    <None Include="wwwroot\js\charts\chart-loan.js" />
+    <None Include="wwwroot\js\charts\chart-sales.js" />
+    <None Include="wwwroot\js\charts\chart-widgets.js" />
+    <None Include="wwwroot\js\charts\gd-analytics.js" />
+    <None Include="wwwroot\js\charts\gd-default.js" />
+    <None Include="wwwroot\js\charts\gd-invest.js" />
+    <None Include="wwwroot\js\editors.js" />
+    <None Include="wwwroot\js\example-chart.js" />
+    <None Include="wwwroot\js\example-dragula.js" />
+    <None Include="wwwroot\js\example-listbox.js" />
+    <None Include="wwwroot\js\example-map.js" />
+    <None Include="wwwroot\js\example-sweetalert.js" />
+    <None Include="wwwroot\js\example-toastr.js" />
+    <None Include="wwwroot\js\example-tree.js" />
+    <None Include="wwwroot\js\libs\datatable-btns.js" />
+    <None Include="wwwroot\js\libs\dragula.js" />
+    <None Include="wwwroot\js\libs\dual-listbox.js" />
+    <None Include="wwwroot\js\libs\editors\quill.js" />
+    <None Include="wwwroot\js\libs\editors\summernote.js" />
+    <None Include="wwwroot\js\libs\editors\tinymce.js" />
+    <None Include="wwwroot\js\libs\fullcalendar.js" />
+    <None Include="wwwroot\js\libs\jkanban.js" />
+    <None Include="wwwroot\js\libs\jqvmap.js" />
+    <None Include="wwwroot\js\libs\jstree.js" />
+    <None Include="wwwroot\js\libs\tagify.js" />
+    <None Include="wwwroot\js\scripts.js" />
+    <None Include="wwwroot\js\scriptss.js" />
+    <None Include="wwwroot\js\site.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+</Project>

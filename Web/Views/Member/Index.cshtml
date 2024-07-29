@@ -1,0 +1,371 @@
+﻿@model Core.Models.PaginatedList<Core.Models.MembersViewModel>
+@{
+    var pageSize = ViewBag.Filter.PageSize;
+    var pageIndex = ViewBag.Filter.PageIndex;
+    var query = ViewBag.Filter.Query;
+}
+<div class="nk-block-head nk-block-head-sm">
+    <div class="nk-block-between">
+        <div class="nk-block-head-content">
+            <h3 class="nk-block-title page-title">Members List</h3>
+            <div class="nk-block-des text-soft">
+                @if (Model.TotalRecords > 0)
+                {
+                    <p>You have total of @Model.TotalRecords.ToString("#,##") Members.</p>
+
+
+                }
+            </div>
+        </div><!-- .nk-block-head-content -->
+    </div><!-- .nk-block-between -->
+</div><!-- .nk-block-head -->
+@if (TempData.ContainsKey("Error"))
+{
+    <div class="alert alert-danger alert-dismissible alert-icon">
+        <em class="icon ni ni-cross-circle"></em> <strong> @TempData["Error"] </strong><button class="close"
+                                                                                               data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success alert-dismissible alert-icon">
+        <em class="icon ni ni-check-circle"></em> <strong>@TempData["Success"]</strong><button class="close"
+                                                                                               data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="alert alert-info alert-dismissible alert-icon">
+    <em class="icon ni ni-check-circle"></em> <strong>
+        Welcome To Attajdid Management System.
+    </strong><button class="close"
+                     data-bs-dismiss="alert"></button>
+</div>
+@if (Model.TotalRecords > 0)
+{
+    <!-- .nk-block-head -->
+    <div class="nk-block">
+        <div class="card card-bordered card-stretch">
+            <div class="card-inner-group">
+                <div class="card-inner position-relative card-tools-toggle">
+
+                    <div class="card-title-group">
+
+                        <div class="card-tools me-n1">
+                            <ul class="btn-toolbar gx-1">
+                                <li>
+                                    <a href="#" class="btn btn-icon search-toggle toggle-search" data-target="search">
+                                        <em class="icon ni ni-search"></em>
+                                    </a>
+                                </li><!-- li -->
+                                <li class="btn-toolbar-sep"></li><!-- li -->
+                                <li>
+                                    <div class="toggle-wrap">
+                                        <a href="#" class="btn btn-icon btn-trigger toggle" data-target="cardTools">
+                                            <em class="icon ni ni-menu-right"></em>
+                                        </a>
+                                        <div class="toggle-content" data-content="cardTools">
+                                            <ul class="btn-toolbar gx-1">
+                                                <li class="toggle-close">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle" data-target="cardTools">
+                                                        <em class="icon ni ni-arrow-left"></em>
+                                                    </a>
+                                                </li><!-- li -->
+                                                <li>
+                                                    <div class="dropdown">
+                                                        <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-bs-toggle="dropdown">
+                                                            <em class="icon ni ni-setting"></em>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-xs dropdown-menu-end">
+                                                            <ul class="link-check">
+                                                                <li>
+                                                                    <span>Show</span>
+                                                                </li>
+                                                                <li>
+                                                                    @if (pageSize == 10)
+                                                                    {
+                                                                        <a class="active" href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 10, Query = query })>10</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 10, Query = query })>10</a>
+                                                                    }
+                                                                </li>
+                                                                <li>
+                                                                    @if (pageSize == 20)
+                                                                    {
+                                                                        <a class="active" href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 20, Query = query })>20</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 20, Query = query })>20</a>
+                                                                    }
+                                                                </li>
+                                                                <li>
+                                                                    @if (pageSize == 50)
+                                                                    {
+                                                                        <a class="active" href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 50, Query = query })>50</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href=@Url.Action("Index", new { PageIndex = pageIndex, PageSize = 50, Query = query })>50</a>
+                                                                    }
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><!-- .dropdown -->
+                                                </li><!-- li -->
+                                            </ul><!-- .btn-toolbar -->
+                                        </div><!-- .toggle-content -->
+                                    </div><!-- .toggle-wrap -->
+                                </li><!-- li -->
+                            </ul><!-- .btn-toolbar -->
+                        </div><!-- .card-tools -->
+
+                        <div class="card-tools">
+                            <div class="nk-block-head-content">
+                                <ul class="nk-block-tools g-3">
+                                    <li>
+                                        <a asp-action="Create" asp-controller="Member" class="btn btn-primary">
+                                            <em class="icon ni ni-plus"></em>
+                                            <text>New Member</text>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div><!-- .nk-block-head-content -->
+                        </div><!-- .card-tools -->
+
+
+                    </div><!-- .card-title-group -->
+
+                    <div class="card-search search-wrap" data-search="search">
+                        <div class="card-body">
+                            <div class="search-content">
+                                <a href="#" class="search-back btn btn-icon toggle-search" data-target="search">
+                                    <em class="icon ni ni-arrow-left"></em>
+                                </a>
+                                <form action=@Url.Action("Index")>
+                                    <input type="text" name="Query" value="@query" class="form-control border-transparent form-focus-none" placeholder="Search indigenes by name and indigene number">
+                                </form>
+                                <button class="search-submit btn btn-icon">
+                                    <em class="icon ni ni-search"></em>
+                                </button>
+                            </div>
+                        </div>
+                    </div><!-- .card-search -->
+                </div><!-- .card-inner -->
+                <div class="card-inner p-0 ">
+                    <div class="nk-tb-list nk-tb-ulist is-compact">
+                        <div class="nk-tb-list nk-tb-ulist">
+                            <div class="nk-tb-item nk-tb-head">
+                                <div class="nk-tb-col">#</div>
+                                <div class="nk-tb-col"><span class="sub-text">Member name</span></div>
+                                <div class="nk-tb-col tb-col-mb"><span class="sub-text">Phone Number</span></div>
+                                <div class="nk-tb-col tb-col-md"><span class="sub-text">State</span></div>
+                                <div class="nk-tb-col tb-col-md"><span class="sub-text">LGA</span></div>
+
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="sub-text"></span>
+                                </div>
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="sub-text"></span>
+                                </div>
+                            </div><!-- .nk-tb-item -->
+                            @foreach (var admin in Model)
+                            {
+                                var idx = Model.IndexOf(admin) + 1;
+                                var del = $"delete{admin.Id}";
+                                var pay = $"pay{admin.Id}";
+
+                                <div class="nk-tb-item">
+
+                                    <div class="nk-tb-col">
+                                        @idx
+                                    </div>
+
+                                    <div class="nk-tb-col tb-col-mb">
+                                        <span>@admin.FullName</span>
+                                    </div>
+                                    <div class="nk-tb-col">
+                                        <div class="user-card">
+                                            <div class="user-info">
+                                                <span class="tb-lead">@admin.PhoneNumber</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="nk-tb-col tb-col-mb">
+                                        <span>@admin.LocalGovernment.State.Name</span>
+                                    </div>
+
+                                    <div class="nk-tb-col tb-col-mb">
+                                        <span>@admin.LocalGovernment.Name</span>
+                                    </div>
+
+                                    <div class="nk-tb-col tb-col-md">
+                                        <a asp-action="Details" asp-controller="Member" asp-route-id="@admin.Id" class="btn btn-round btn-primary text-white">View</a>
+                                    </div>
+
+                                    <div class="nk-tb-col tb-col-md">
+                                        <ul class="nk-tb-actions gx-1">
+                                            <li>
+                                                <div class="dropdown">
+                                                    <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown">
+                                                        <em class="icon ni ni-more-h"></em>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <ul class="link-list-opt">
+                                                            <li>
+                                                                <a asp-controller="Member" asp-action="Edit" asp-route-id="@admin.Id">
+                                                                    <em class="icon ni ni-edit"></em><span>Edit</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a asp-controller="PaymentInfo" asp-action="Index" asp-route-id="@admin.Id">
+                                                                    <em class="icon ni ni-sign-kobo-alt"></em><span>Payments List</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#@pay" data-bs-toggle="modal">
+                                                                    <em class="icon ni ni-coins"></em><span>Record Payment</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#@del" data-bs-toggle="modal">
+                                                                    <em class="icon ni ni-delete"></em><span>Delete</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- .nk-tb-item -->
+                                //models
+                                <div class="modal fade" tabindex="-1" id="@del">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content p-5">
+                                            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <em class="icon ni ni-cross"></em>
+                                            </a>
+                                            <h5 class="modal-title text-center">
+                                                Are you sure you want to delete employee application ?
+                                            </h5>
+                                            <div class="col-13">
+                                                <ul class="justify-center align-center flex-wrap flex-sm-nowrap gx-4 gy-2 mt-3">
+                                                    <li>
+                                                        <form asp-action="Delete" asp-controller="Member" asp-route-id="@admin.Id"
+                                                              method="post">
+                                                            <button class="btn btn-primary" type="submit">
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="link" data-bs-dismiss="modal">Cancel</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                //Record payment modal
+                                <div class="modal fade" role="dialog" id="@pay">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                            <div class="modal-body modal-body-lg">
+                                                <h5 class="title pb-3">Record Payment</h5>
+                                                <form method="post" asp-controller="PaymentInfo" asp-action="Create">
+                                                    <div class="row gy-4">
+                                                        <input hidden name="Id" value="@admin.Id" />
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Month</label>
+                                                                <div class="form-control-wrap">
+                                                                    <select class="form-select" required id="monthSelect" name="month" placeholder="Month"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Amount</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="number" class="form-control" required name="amount" placeholder="Amount" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-12 col-xxl-3">
+                                                            <div class="form-group">
+                                                                <button type="submit" id="subbtn" class="btn btn-primary btn-lg">Add Record</button>
+                                                                <a href="#" type="button" data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                                                            </div>
+                                                        </div><!--col-->
+                                                    </div>
+                                                </form>
+                                            </div><!-- .modal-body -->
+                                        </div><!-- .modal-content -->
+                                    </div><!-- .modal-dialog -->
+                                </div>
+
+                                <!-- .modal -->
+
+                            }
+                        </div><!-- .nk-tb-list -->
+                        <!-- .card-inner -->
+                    </div>
+                </div><!-- .card-inner -->
+            </div><!-- .card-inner-group -->
+        </div><!-- .card -->
+    </div>
+
+    <!-- .nk-block -->
+}
+else
+{
+
+    <div class="nk-block nk-block-middle wide-xs mx-auto">
+        <div class="nk-block-content nk-error-ld text-center">
+            <h1 class="nk-error-head">
+                <svg width="186" height="186" viewBox="0 0 186 186" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M180.772 145.122C180.772 147.589 179.881 149.713 178.1 151.494C176.456 153.139 174.4 153.961 171.933 153.961H154.461V171.433C154.461 173.9 153.57 176.024 151.789 177.806C150.144 179.45 148.089 180.272 145.622 180.272C143.156 180.272 141.031 179.45 139.25 177.806C137.606 176.024 136.783 173.9 136.783 171.433V153.961H119.311C116.844 153.961 114.72 153.139 112.939 151.494C111.294 149.713 110.472 147.589 110.472 145.122C110.472 142.793 111.294 140.806 112.939 139.161C114.72 137.38 116.844 136.489 119.311 136.489H136.783V118.811C136.783 116.481 137.606 114.494 139.25 112.85C141.031 111.069 143.156 110.178 145.622 110.178C148.089 110.178 150.144 111.069 151.789 112.85C153.57 114.494 154.461 116.481 154.461 118.811V136.489H171.933C174.4 136.489 176.456 137.38 178.1 139.161C179.881 140.806 180.772 142.793 180.772 145.122ZM78.2 5.34445C73.1296 3.56296 67.7852 2.26111 62.1667 1.43889C56.5481 0.47963 50.7241 0 44.6944 0C38.8019 0 32.9778 0.47963 27.2222 1.43889C21.4667 2.39815 15.9167 3.76852 10.5722 5.55L11.3944 5.34445C10.0241 5.75556 8.85926 6.44074 7.9 7.4C6.94074 8.35926 6.18704 9.52408 5.63889 10.8944C3.99444 15.9648 2.69259 21.3093 1.73333 26.9278C0.911111 32.5463 0.5 38.3704 0.5 44.4C0.5 50.2926 0.911111 56.1167 1.73333 61.8722C2.69259 67.6278 4.06296 73.1778 5.84444 78.5222L5.63889 77.7C6.18704 79.0704 6.94074 80.2352 7.9 81.1945C8.85926 82.1537 10.0241 82.9074 11.3944 83.4556C16.3278 85.1 21.6037 86.4019 27.2222 87.3611C32.9778 88.1833 38.8019 88.663 44.6944 88.8C50.7241 88.663 56.5481 88.1833 62.1667 87.3611C67.9222 86.4019 73.4722 85.0315 78.8167 83.25L78.2 83.4556C79.5704 82.9074 80.7352 82.1537 81.6944 81.1945C82.6537 80.2352 83.3389 79.0704 83.75 77.7C85.5315 72.7667 86.8333 67.4907 87.6556 61.8722C88.6148 56.1167 89.0944 50.2926 89.0944 44.4C89.0944 38.3704 88.6148 32.5463 87.6556 26.9278C86.6963 21.1722 85.3259 15.6222 83.5444 10.2778L83.75 10.8944C83.3389 9.52408 82.6537 8.35926 81.6944 7.4C80.7352 6.44074 79.5704 5.75556 78.2 5.34445ZM174.606 83.4556C175.976 82.9074 177.141 82.1537 178.1 81.1945C179.059 80.2352 179.813 79.0704 180.361 77.7C182.006 72.7667 183.239 67.4907 184.061 61.8722C185.02 56.1167 185.5 50.2926 185.5 44.4C185.5 38.3704 185.02 32.5463 184.061 26.9278C183.239 21.1722 181.937 15.6222 180.156 10.2778L180.361 10.8944C179.813 9.52408 179.059 8.35926 178.1 7.4C177.141 6.44074 175.976 5.75556 174.606 5.34445C169.672 3.56296 164.328 2.26111 158.572 1.43889C152.954 0.47963 147.198 0 141.306 0C135.276 0 129.383 0.47963 123.628 1.43889C118.009 2.39815 112.528 3.76852 107.183 5.55L107.8 5.34445C106.43 5.75556 105.265 6.44074 104.306 7.4C103.346 8.35926 102.661 9.52408 102.25 10.8944C100.469 15.9648 99.0982 21.3093 98.1389 26.9278C97.3167 32.5463 96.9056 38.3704 96.9056 44.4C96.9056 50.2926 97.3852 56.1167 98.3444 61.8722C99.3037 67.6278 100.674 73.1778 102.456 78.5222L102.25 77.7C102.661 79.0704 103.346 80.2352 104.306 81.1945C105.265 82.1537 106.43 82.9074 107.8 83.4556C112.87 85.1 118.215 86.4019 123.833 87.3611C129.452 88.1833 135.276 88.663 141.306 88.8C147.198 88.663 153.022 88.1833 158.778 87.3611C164.533 86.4019 170.083 85.0315 175.428 83.25L174.606 83.4556ZM78.2 101.75C73.1296 100.106 67.7852 98.8037 62.1667 97.8445C56.5481 96.8852 50.7241 96.4056 44.6944 96.4056C38.8019 96.4056 32.9778 96.8852 27.2222 97.8445C21.4667 98.8037 15.9167 100.174 10.5722 101.956L11.3944 101.75C10.0241 102.161 8.85926 102.915 7.9 104.011C6.94074 104.97 6.18704 106.067 5.63889 107.3V107.506C3.99444 112.439 2.69259 117.715 1.73333 123.333C0.911111 128.952 0.5 134.776 0.5 140.806C0.5 146.835 0.911111 152.728 1.73333 158.483C2.69259 164.102 4.06296 169.583 5.84444 174.928L5.63889 174.106C6.18704 175.476 6.94074 176.709 7.9 177.806C8.85926 178.765 10.0241 179.45 11.3944 179.861C16.3278 181.506 21.6037 182.807 27.2222 183.767C32.9778 184.726 38.8019 185.206 44.6944 185.206C50.7241 185.206 56.5481 184.726 62.1667 183.767C67.9222 182.807 73.4722 181.437 78.8167 179.656L78.2 179.861C79.5704 179.45 80.7352 178.765 81.6944 177.806C82.6537 176.709 83.3389 175.544 83.75 174.311V174.106C85.5315 169.172 86.8333 163.896 87.6556 158.278C88.6148 152.659 89.0944 146.835 89.0944 140.806C89.0944 134.776 88.6148 128.952 87.6556 123.333C86.6963 117.578 85.3259 112.028 83.5444 106.683L83.75 107.506C83.3389 106.135 82.6537 104.97 81.6944 104.011C80.7352 102.915 79.5704 102.161 78.2 101.75Z"
+                          fill="#526484" />
+                </svg>
+            </h1>
+            <h3 class="nk-error-title">Click below to</h3>
+
+            <a asp-action="Create" asp-controller="Member" class="btn btn-lg btn-primary mt-2">
+                <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.8398 4.26147C17.6315 3.63647 17.2995 3.09611 16.8438 2.64038C16.388 2.18465 15.8542 1.85913 15.2422 1.66382L15.2031 1.64429C14.3568 1.42293 13.4453 1.25366 12.4688 1.13647C11.5052 1.00627 10.5156 0.941162 9.5 0.941162C8.48438 0.941162 7.48177 1.00627 6.49219 1.13647C5.51562 1.26668 4.55859 1.44897 3.62109 1.68335L3.79688 1.64429L3.77734 1.66382C3.15234 1.85913 2.61198 2.19116 2.15625 2.65991C1.70052 3.11564 1.36849 3.64299 1.16016 4.24194V4.28101C0.938802 5.14038 0.763021 6.05184 0.632812 7.01538C0.515625 7.97892 0.457031 8.96851 0.457031 9.98413C0.457031 10.9998 0.515625 12.0024 0.632812 12.9919C0.763021 13.9685 0.951823 14.932 1.19922 15.8826L1.16016 15.7068C1.36849 16.3318 1.70052 16.8787 2.15625 17.3474C2.61198 17.8031 3.14583 18.1287 3.75781 18.324H3.79688C4.64323 18.5583 5.54818 18.7341 6.51172 18.8513C7.48828 18.9685 8.48438 19.0336 9.5 19.0466C10.5156 19.0336 11.5117 18.962 12.4883 18.8318C13.4779 18.7146 14.4414 18.5323 15.3789 18.2849L15.2227 18.324C15.8477 18.1156 16.388 17.7836 16.8438 17.3279C17.2995 16.8722 17.6315 16.3383 17.8398 15.7263V15.7068C18.0612 14.8474 18.2305 13.936 18.3477 12.9724C18.4779 11.9958 18.543 10.9998 18.543 9.98413C18.543 8.96851 18.4779 7.97241 18.3477 6.99585C18.2305 6.00627 18.0482 5.04272 17.8008 4.10522L17.8398 4.26147ZM16.2188 15.2966C16.1016 15.6222 15.9193 15.9086 15.6719 16.156C15.4245 16.4034 15.1445 16.5857 14.832 16.7029H14.8125C14.0182 16.9242 13.1654 17.0935 12.2539 17.2107C11.3555 17.3149 10.4375 17.3669 9.5 17.3669C8.5625 17.3669 7.63802 17.3083 6.72656 17.1912C5.8151 17.074 4.92318 16.9047 4.05078 16.6833L4.20703 16.7224C3.86849 16.5922 3.57552 16.4099 3.32812 16.1755C3.09375 15.9281 2.91146 15.6417 2.78125 15.3162V15.2966C2.57292 14.5024 2.41016 13.656 2.29297 12.7576C2.17578 11.8591 2.11719 10.9347 2.11719 9.98413C2.11719 9.04663 2.17578 8.12215 2.29297 7.21069C2.41016 6.29924 2.57943 5.40731 2.80078 4.53491L2.78125 4.69116C2.89844 4.36564 3.08073 4.07918 3.32812 3.83179C3.57552 3.58439 3.86198 3.39559 4.1875 3.26538H4.20703C5.0013 3.05705 5.84766 2.89429 6.74609 2.7771C7.64453 2.65991 8.5625 2.60132 9.5 2.60132C10.4375 2.60132 11.362 2.65991 12.2734 2.7771C13.1849 2.89429 14.0768 3.07007 14.9492 3.30444L14.793 3.26538C15.1315 3.38257 15.418 3.56486 15.6523 3.81226C15.8997 4.05965 16.0885 4.34611 16.2188 4.67163V4.69116C16.4271 5.48543 16.5898 6.33179 16.707 7.23022C16.8242 8.12866 16.8828 9.04663 16.8828 9.98413C16.8828 10.9347 16.8242 11.8656 16.707 12.7771C16.5898 13.6755 16.4206 14.561 16.1992 15.4333L16.2188 15.2966ZM12.8398 9.98413C12.8398 10.2185 12.7552 10.4203 12.5859 10.5896C12.4297 10.7458 12.2344 10.824 12 10.824H10.3398V12.4841C10.3398 12.7185 10.2552 12.9203 10.0859 13.0896C9.92969 13.2458 9.73438 13.324 9.5 13.324C9.26562 13.324 9.0638 13.2458 8.89453 13.0896C8.73828 12.9203 8.66016 12.7185 8.66016 12.4841V10.824H7C6.76562 10.824 6.5638 10.7458 6.39453 10.5896C6.23828 10.4203 6.16016 10.2185 6.16016 9.98413C6.16016 9.76278 6.23828 9.57397 6.39453 9.41772C6.5638 9.24845 6.76562 9.16382 7 9.16382H8.66016V7.48413C8.66016 7.26278 8.73828 7.07397 8.89453 6.91772C9.0638 6.74845 9.26562 6.66382 9.5 6.66382C9.73438 6.66382 9.92969 6.74845 10.0859 6.91772C10.2552 7.07397 10.3398 7.26278 10.3398 7.48413V9.16382H12C12.2344 9.16382 12.4297 9.24845 12.5859 9.41772C12.7552 9.57397 12.8398 9.76278 12.8398 9.98413Z"
+                          fill="#FCF8E3" />
+                </svg> &nbsp; &nbsp;
+                Create New Member Here
+            </a>
+        </div>
+    </div>
+
+}
+
+@section scripts 
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const monthSelect = document.getElementById("monthSelect");
+            const months = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            months.forEach((month, index) => {
+                const option = document.createElement("option");
+                option.value = index 
+                option.textContent = month;
+                monthSelect.appendChild(option);
+            });
+        });
+    </script>
+}

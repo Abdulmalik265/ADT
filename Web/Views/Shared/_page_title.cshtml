@@ -1,0 +1,47 @@
+﻿@using Cores.Models.Shared
+@{
+    var crumbs = ViewBag.Breadcrumbs as List<BreadCrumb>;
+    BreadCrumb? prev = null;
+    if (crumbs?.Count() - 2 >= 0)
+    {
+        prev = crumbs?[crumbs.Count() - 2];
+    }
+}
+<!-- start page title -->
+<div class="row">
+    @if (prev is not null)
+    {
+        <div class="col-6 mb-1">
+            <div class="nk-block-head-sub">
+                <a class="back-to" href="@prev.Url">
+                    <em class="icon ni ni-arrow-left"></em>
+                    <span>@prev.Title</span>
+                </a>
+            </div>
+        </div>
+    }
+    @if (crumbs is not null)
+    {
+        <div class="col-6 mb-1">
+            <ul class="breadcrumb breadcrumb-arrow">
+                @foreach (var crumb in crumbs)
+                {
+                    if (crumb == crumbs.Last())
+                    {
+                        <li class="breadcrumb-item active">@crumb.Title</li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item"><a href="@crumb.Url">@crumb.Title</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <h4 class="mb-2 font-size-18">@crumbs.LastOrDefault()?.Title</h4>
+    }
+    else
+    {
+        <h4 class="mb-2 font-size-18">@ViewBag.pTitle</h4>
+    }
+</div>
+<!-- end page title -->

@@ -1,0 +1,219 @@
+﻿@using Core.Constants
+@using Core.Enum
+@using System.Text.Json
+@using Core.Models
+@model Core.Models.SMSViewModel
+@{
+    ViewData["Title"] = "Send SMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData.ContainsKey("BaseResponse"))
+{
+    var baseResponseJson = TempData["BaseResponse"] as string;
+    var baseResponse = JsonSerializer.Deserialize<BaseResponse>(baseResponseJson);
+
+    if (baseResponse.Status)
+    {
+        <div class="alert alert-success alert-dismissible alert-icon">
+            <em class="icon ni ni-check-circle"></em> <strong>@baseResponse.Message</strong>
+            <button class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible alert-icon">
+            <em class="icon ni ni-cross-circle"></em> <strong>@baseResponse.Message</strong>
+            <button class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+
+
+
+<div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+    <div class="nk-block-head-content text-center">
+        <h2 class="nk-block-title fw-normal">Send SMS Special Message!</h2>
+        <div class="nk-block-des">
+            <p class="lead">Select the option you intend to use!</p>
+        </div>
+    </div>
+</div><!-- .nk-block-head -->
+
+<div class="nk-block nk-block-lg">
+    <div class="card card-bordered">
+        <div class="card-inner ">
+            <form method="post" id="reminderForm" asp-action="SendSMS" asp-controller="Directors">
+                <div class="row gy-4">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Select Recipient Type</label>
+                            <div class="form-control-wrap">
+                                <select id="RecipientType" asp-for="RecipientType" class="form-select" required >
+                                    <option selected disabled>Select Type</option>
+                                    @if (User.IsInRole(RoleConstants.SuperAdmin))
+                                    {
+                                        <option value="Directors">Directors</option>
+
+                                    }
+                                    <option value="Admins">Admins</option>
+                                    <option value="Members">Members</option>
+                                    <option value="All">All</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    @if (User.IsInRole(RoleConstants.SuperAdmin))
+                    {
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <div class="form-control-wrap">
+                                    <select asp-items="ViewBag.states" id="StateId" asp-for="StateId" class="form-select" required onchange="GetLgst(this, 'LocalGovernmentId')">
+                                        <option value="">All States</option>
+                                        <option selected disabled>Select State</option>
+                                        @foreach (var state in (SelectList)ViewBag.states)
+                                        {
+                                            <option value="@state.Value">@state.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Local Government</label>
+                                <div class="form-control-wrap">
+                                    <select asp-for ="LocalGovernmentId" id="LocalGovernmentId" required class="form-select">
+                                        <option disabled selected>Select LGA</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole(RoleConstants.Director))
+                    {
+                        <input hidden asp-for="StateId" value="@ViewBag.stateId" />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Local Government</label>
+                                <div class="form-control-wrap">
+                                    <select asp-for="LocalGovernmentId" id="LocalGovernmentId" class="form-select" required>
+                                        <option disabled selected>Select LGA</option>
+                                        @if (ViewData["lgas"] != null)
+                                        {
+                                            @foreach (var lga in (SelectList)ViewData["lgas"])
+                                            {
+                                                <option value="@lga.Value">@lga.Text</option>
+                                            }
+                                            <option value="">All Local Governments</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <div class="form-control-wrap">
+                                <textarea class="form-control" required asp-for="Message"  placeholder="Enter your message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xxl-3">
+                        <div class="form-group">
+                            <button type="button"  class="btn btn-primary btn-lg" onclick="confirmReminder()">Send Message</button>
+                        </div>
+                    </div><!--col-->
+
+                </div><!--row-->
+            </form>
+        </div><!-- .card-inner-group -->
+    </div><!-- .card -->
+</div>
+
+<script type="text/javascript">
+    function GetLgst(senderelement, receiverelement) {
+        var sId = senderelement.value;
+        var allStatesOption = ""; // Value of the "All States" option
+
+        if (sId === allStatesOption) {
+            // Clear the LGA dropdown if "All States" is selected
+            $(`#${receiverelement}`).empty();
+            $(`#${receiverelement}`).append('<option disabled selected>Select LGA</option>');
+            return;
+        }
+
+        if (sId === null || sId === "") {
+            return;
+        }
+
+        Swal.showLoading();
+        $.ajax({
+            url: '/api/v1/v2/getLga',
+            type: 'GET',
+            data: {
+                SId: sId
+            },
+            success: function (response) {
+                console.log(response);
+
+                $(`#${receiverelement}`).empty();
+                $(`#${receiverelement}`).append('<option disabled selected>Select LGA</option>');
+                $.each(response.lgas, function (index, item) {
+                    $(`#${receiverelement}`).append('<option value="' + item.id + '">' + item.name + '</option>');
+                });
+                // Add the "All Local Governments" option after populating dynamic options
+                $(`#${receiverelement}`).append('<option value="all">All Local Governments</option>');
+            },
+            error: function (response) {
+                Swal.close();
+                Swal.fire("Request failed", "Processing failed due to network issues", "error");
+            },
+            complete: function (done) {
+                Swal.close();
+            }
+        });
+    }
+
+    function confirmReminder() {
+        var message = document.querySelector('textarea[name="Message"]').value.trim();
+
+        if (message === "") {
+            Swal.fire({
+                title: "Message Required",
+                text: "Please enter a message before submitting.",
+                icon: "warning",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "OK"
+            });
+        } else {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Are you sure you want to send SMS to all the selected?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, for sure!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("reminderForm").submit();
+                }
+            });
+        }
+    }
+
+    // Event listener to clear LGA when "All States" is selected
+    $('#StateId').change(function () {
+        var selectedValue = $(this).val();
+        if (selectedValue === "") {
+            $('#LocalGovernmentId').empty();
+            $('#LocalGovernmentId').append('<option disabled selected>Select LGA</option>');
+        }
+    });
+</script>
+

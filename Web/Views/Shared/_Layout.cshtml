@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Attajdid">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="~/home/images/ATD_Logo.jpg">
+    <!-- Page Title  -->
+    <title>@ViewData["Title"] | ADT</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="/css/dashlite.css?ver=3.1.2">
+
+
+</head>
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main -->
+        <div class="nk-main ">
+            <!-- sidebar -->
+            <partial name="_sidebar.cshtml" />
+            <!-- sidebar -->
+            <!-- wrap -->
+            <div class="nk-wrap ">
+                <!-- main header -->
+                <partial name="_topbar" />
+                <!-- main header -->
+                <!-- content //userDetails -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                @await Html.PartialAsync("_page_title.cshtml")
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content -->
+                <!-- footer -->
+                <div class="nk-footer">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright justify-center">
+                                &copy; @DateTime.Now.Year Attajdid.</a>
+                            </div>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-->
+            </div>
+            <!-- wrap -->
+        </div>
+        <!-- main -->
+    </div>
+    <!-- app-root -->
+    <!-- JavaScript -->
+    <script src="/js/bundle.js?ver=3.1.2"></script>
+    <script src="/js/scripts.js?ver=3.1.2"></script>
+    <script src="/js/charts/gd-default.js?ver=3.1.2"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+<div class="js-preloader">
+    <div class="loading-animation tri-ring"></div>
+</div>
+
+
+
+
+</html>

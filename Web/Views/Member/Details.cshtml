@@ -1,0 +1,57 @@
+﻿@model Core.Models.MembersViewModel
+@{
+    ViewBag.Title = "Details of Director";
+}
+
+<div class="nk-block">
+    <div class="row gy-5">
+        <div class="col-12">
+            <div class="card card-bordered">
+                <ul class="data-list is-compact">
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">Name of Member</div>
+                            <div class="data-value fw-bold">@Model.FullName</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">Phone Number</div>
+                            <div class="data-value">@Model.PhoneNumber</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">State</div>
+                            <div class="data-value">@Model.LocalGovernment.State.Name</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">LGA</div>
+                            <div class="data-value">@Model.LocalGovernment.Name</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">Gender</div>
+                            <div class="data-value">@Model.Gender</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">Qualification</div>
+                            <div class="data-value">@Model.Qualification</div>
+                        </div>
+                    </li>
+                    <li class="data-item">
+                        <div class="data-col">
+                            <div class="data-label">Email</div>
+                            <div class="data-value">@Model.Email</div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- .card -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .nk-block -->

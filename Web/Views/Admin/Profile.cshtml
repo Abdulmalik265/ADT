@@ -1,0 +1,237 @@
+﻿@model Core.Models.AdminViewModel
+@{
+    string initials = Model.FirstName.Substring(0, 1) + Model.SurName.Substring(0, 1);
+    if (!string.IsNullOrEmpty(Model.OtherName))
+        initials += Model.OtherName.Substring(0, 1);
+
+}
+@if (TempData.ContainsKey("Error"))
+{
+    <div class="alert alert-danger alert-dismissible alert-icon">
+        <em class="icon ni ni-cross-circle"></em> <strong> @TempData["Error"] </strong><button class="close"
+                                                                                               data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success alert-dismissible alert-icon">
+        <em class="icon ni ni-check-circle"></em> <strong>@TempData["Success"]</strong><button class="close"
+                                                                                               data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="nk-block">
+    <div class="card card-bordered">
+        <div class="card-aside-wrap">
+
+            <div class="card-inner card-inner-lg">
+                <div class="nk-block-head nk-block-head-lg">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title">Personal Information</h4>
+                            <div class="nk-block-des">
+                                <p>Basic info, like your name and address, that you use on Platform.</p>
+                            </div>
+                        </div>
+                        <div class="nk-block-head-content align-self-start d-lg-none">
+                            <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                        </div>
+                    </div>
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="nk-data data-list">
+                        <div class="data-head">
+                            <h6 class="overline-title">Basics</h6>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-col">
+                                <span class="data-label">Full Name</span>
+                                <span class="data-value">@Model.FullName</span>
+                            </div>
+                        </div><!-- data-item -->
+                        <div class="data-item">
+                            <div class="data-col">
+                                <span class="data-label">User Name</span>
+                                <span class="data-value">@Model.UserName</span>
+                            </div>
+                        </div><!-- data-item -->
+                        <div class="data-item">
+                            <div class="data-col">
+                                <span class="data-label">Email</span>
+                                <span class="data-value">@Model.Email</span>
+                            </div>
+                        </div><!-- data-item -->
+                        <div class="data-item">
+                            <div class="data-col">
+                                <span class="data-label">Phone Number</span>
+                                <span class="data-value text-soft">@Model.PhoneNumber</span>
+                            </div>
+                        </div><!-- data-item -->
+                        <div class="data-item">
+                            <div class="data-col">
+                                <span class="data-label">State</span>
+                                <span class="data-value">@Model.LocalGovernment.State.Name</span>
+                            </div>
+                        </div><!-- data-item -->
+                        <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                            <div class="data-col">
+                                <button class="btn btn-primary"<text>Update Profile</text></button>
+                            </div>
+                        </div><!-- data-item -->
+                    </div>
+                    <!-- @@ Profile Edit Modal -->
+                    <div class="modal fade" role="dialog" id="profile-edit">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                <div class="modal-body modal-body-lg">
+                                    <h5 class="title pb-3">Update Profile</h5>
+                                    <form method="post" asp-controller="Admin" asp-action="UpdateProfile">
+                                        <div class="row gy-4">
+                                            <input type="hidden" asp-for="Id" />
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="display-name">User Name</label>
+                                                    <input type="text" asp-for="UserName" class="form-control form-control-lg" required placeholder="Enter user name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="phone-no">Email</label>
+                                                    <input type="text" asp-for="Email" class="form-control form-control-lg" required placeholder="Enter email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="birth-day">Password</label>
+                                                    <input type="text" asp-for="Password" class="form-control form-control-lg" required placeholder="Enter Password">
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-xxl-3">
+                                                <div class="form-group">
+                                                    <button type="submit" id="subbtn" class="btn btn-primary btn-lg">Update Profile</button>
+                                                    <a href="#" type="button" data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                                                </div>
+                                            </div><!--col-->
+                                        </div>
+                                    </form>
+                                </div><!-- .modal-body -->
+                            </div><!-- .modal-content -->
+                        </div><!-- .modal-dialog -->
+                    </div><!-- .modal -->
+
+                </div><!-- .nk-block -->
+            </div>
+
+            <div class="card-aside  card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+                <div class="card-inner-group" data-simplebar>
+                    <div class="user-action pt-2 ">
+                        <div class="dropdown">
+                            <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown" href="#"><em class="icon ni ni-more-v"></em></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <ul class="link-list-opt no-bdr">
+                                    <li><a data-bs-toggle="modal" data-bs-target="#profile-edit"><em class="icon ni ni-edit-fill"></em><span>Update Profile</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-inner">
+                        <div class="user-card">
+                            @if (ViewBag.ImageData is null)
+                            {
+                                <div class="user-avatar lg bg-primary">
+                                    <span>@initials</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <img src="@ViewBag.ImageData" class="user-avatar lg" alt="">
+                            }
+                            <div class="user-info pr-2">
+                                <span class="lead-text">@Model.FullName</span>
+                                <span class="sub-text">@Model.Email</span>
+                            </div>
+                        </div><!-- .user-card -->
+                    </div><!-- .card-inner -->
+                    <div class="card-inner">
+                        <div class="user-account-info py-0">
+                            <h6 class="overline-title-alt">State</h6>
+                            <div class="user-balance">@Model.LocalGovernment.State.Name</div>
+                        </div>
+                    </div><!-- .card-inner -->
+                    <div class="card-inner">
+                        <div class="user-account-info py-0">
+                            <h6 class="overline-title-alt">LGA</h6>
+                            <div class="user-balance">@Model.LocalGovernment.Name</div>
+                        </div>
+                    </div><!-- .card-inner -->
+                    <div class="card-inner p-0">
+                        <ul class="link-list-menu">
+                            <li><a class="active" asp-controller="Admin" asp-action="Profile"><em class="icon ni ni-user-fill-c"></em><span>Personal Infromation</span></a></li>
+                        </ul>
+                    </div><!-- .card-inner -->
+                </div><!-- .card-inner-group -->
+            </div><!-- card-aside -->
+        </div><!-- .card-aside-wrap -->
+
+    </div><!-- .card -->
+</div><!-- .nk-block -->
+<!-- Change Picture Modal -->
+<div class="modal fade" role="dialog" id="changepicture">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-lg">
+                <h5 class="title pb-3">Update Profile</h5>
+
+                <form enctype="multipart/form-data" method="post" asp-controller="Employee" asp-action="UpdatePassport">
+                    <div class="row gy-4">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="NewPassport">Picture</label>
+                                <input type="file" onchange="UpdatePassport()" id="NewPassport" name="NewPassport" class="form-control form-control-lg" required accept=".png, .jpg, .jpeg">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <img src="" id="passportImage" height="200" width="200" style="border-radius:100px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-xxl-3">
+                            <div class="form-group">
+                                <button type="submit" id="subbtn" class="btn btn-primary btn-lg">Save New Pictue</button>
+                                <a href="#" type="button" data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                            </div>
+                        </div><!--col-->
+
+
+                    </div>
+                </form>
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />"
+    <script>
+        function UpdatePassport() {
+            const input = document.getElementById('NewPassport');
+            const img = document.getElementById('passportImage');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

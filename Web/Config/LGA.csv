@@ -1,0 +1,746 @@
+Name,Code
+Aba North,AB01
+Aba South,AB01
+Arochukwu,AB01
+Bende, AB01
+Isiala Ngwa South,AB01
+Ikwuano,AB01
+Isiala,AB01
+Ngwa North,AB01
+Isukwuato,AB01
+Ukwa West,AB01
+Ukwa East,AB01
+Umuahia,AB01
+Umuahia South,AB01
+Demsa, AD01
+Fufore, AD01
+Ganye, AD01
+Girei, AD01
+Gombi, AD01
+Jada, AD01
+Yola North, AD01
+Lamurde, AD01
+Madagali, AD01
+Maiha, AD01
+Mayo-Belwa, AD01
+Michika, AD01
+Mubi South, AD01
+Numna, AD01
+Shelleng, AD01
+Song, AD01
+Toungo, AD01
+Jimeta, AD01
+Yola South, AD01
+Hung, AD01
+Aguata, AN01
+Anambra, AN01
+Anambra West, AN01
+Anaocha, AN01
+Awka South, AN01
+Awka North, AN01
+Ogbaru, AN01
+Onitsha South, AN01
+Onitsha North, AN01
+Orumba North, AN01
+Orumba South, AN01
+Oyi, AN01
+Abak, AK01
+Eastern Obolo, AK01
+Eket, AK01
+Essien Udim, AK01
+Etimekpo, AK01
+Etinan, AK01
+Ibeno, AK01
+Ibesikpo Asutan, AK01
+Ibiono Ibom, AK01
+Ika, AK01
+Ikono, AK01
+Ikot Abasi, AK01
+Ikot Ekpene, AK01
+Ini, AK01
+Itu, AK01
+Mbo, AK01
+Mkpat Enin, AK01
+Nsit Ibom, AK01
+Nsit Ubium, AK01
+Obot Akara, AK01
+Okobo, AK01
+Onna, AK01
+Orukanam, AK01
+Oron, AK01
+Udung Uko, AK01
+Ukanafun, AK01
+Esit Eket, AK01
+Uruan, AK01
+Urue Offoung, AK01
+Oruko Ete, AK01
+Uyo, AK01
+Alkaleri, BA01
+Bauchi, BA01
+Bogoro, BA01
+Darazo, BA01
+Dass, BA01
+Gamawa, BA01
+Ganjuwa, BA01
+Giade, BA01
+Jama`are, BA01
+Katagum, BA01
+Kirfi, BA01
+Misau, BA01
+Ningi, BA01
+Hira, BA01
+Tafawa Balewa, BA01
+Itas Gadau, BA01
+Toro, BA01
+Warji, BA01
+Zaki, BA01
+Dambam, BA01
+Brass, BY01
+Ekeremor, BY01
+Kolok/Opokuma, BY01
+Nembe, BY01
+Ogbia, BY01
+Sagbama, BY01
+Southern Ijaw, BY01
+Yenagoa, BY01
+Ador, BE01
+Agatu, BE01
+Apa, BE01
+Buruku, BE01
+Gboko, BE01
+Guma, BE01
+Gwer East, BE01
+Gwer West, BE01
+Kastina-ala, BE01
+Konshisha, BE01
+Kwande, BE01
+Logo, BE01
+Makurdi, BE01
+Obi, BE01
+Ogbadibo, BE01
+Ohimini, BE01
+Oju, BE01
+Okpokwu, BE01
+Oturkpo, BE01
+Tarka, BE01
+Ukum, BE01
+Vandekya, BE01
+Abadan, BO01
+Askira/Uba, BO01
+Bama, BO01
+Bayo, BO01
+Biu, BO01
+Chibok, BO01
+Damboa, BO01
+Dikwagubio, BO01
+Guzamala, BO01
+Gwoza, BO01
+Hawul, BO01
+Jere, BO01
+Kaga, BO01
+Kalka/Balge, BO01
+Konduga, BO01
+Kukawa, BO01
+Kwaya-Ku, BO01
+Mafa, BO01
+Magumeri, BO01
+Maiduguri, BO01
+Marte, BO01
+Mobbar, BO01
+Monguno, BO01
+Ngala, BO01
+Nganzai, BO01
+Shani, BO01
+Abia, CR01
+Akampa, CR01
+Akpabuyo, CR01
+Bakassi, CR01
+Bekwara, CR01
+Biase, CR01
+Boki, CR01
+Calabar South, CR01
+Etung, CR01
+Ikom, CR01
+Obanliku, CR01
+Obubra, CR01
+Obudu, CR01
+Odukpani, CR01
+Ogoja, CR01
+Ugep North, CR01
+Yala, CR01
+Yarkur, CR01
+Aniocha South, DE01
+Anioha, DE01
+Bomadi, DE01
+Burutu, DE01
+Ethiope West, DE01
+Ethiope East, DE01
+Ika South, DE01
+Ika North East, DE01
+Isoko South, DE01
+Isoko North, DE01
+Ndokwa East, DE01
+Ndokwa West, DE01
+Okpe, DE01
+Oshimili North, DE01
+Oshimili South, DE01
+Patani, DE01
+Sapele, DE01
+Udu, DE01
+Ughelli South, DE01
+Ughelli North, DE01
+Ukwuani, DE01
+Uviwie, DE01
+Warri Central, DE01
+Warri North, DE01
+Warri South, DE01
+Abakaliki, EB01
+Afikpo South, EB01
+Afikpo North, EB01
+Ebonyi, EB01
+Ezza, EB01
+Ezza South, EB01
+Ikwo, EB01
+Ishielu, EB01
+Ivo, EB01
+Ohaozara, EB01
+Ohaukwu, EB01
+Onicha, EB01
+Izzi, EB01
+Akoko-Edo, ED01
+Egor, ED01
+Esan East, ED01
+Esan South East, ED01
+Esan Central, ED01
+Esan West, ED01
+Etsako Central, ED01
+Etsako East, ED01
+Etsako West, ED01
+Orhionwon, ED01
+Ivia North, ED01
+Ovia South West, ED01
+Owan West, ED01
+Owan South, ED01
+Uhunmwonde, ED01
+Ado Ekiti, EK01
+Effon Alaiye, EK01
+Ekiti South West, EK01
+Ekiti West, EK01
+Ekiti East, EK01
+Emure/Ise, EK01
+Orun, EK01
+Ido, EK01
+Osi, EK01
+Ijero, EK01
+Ikere, EK01
+Ikole, EK01
+Ilejemeje, EK01
+Irepodun, EK01
+Ise/Orun, EK01
+Moba, EK01
+Oye, EK01
+Aiyekire (Gbonyin), EK01
+Awgu, EN01
+Aninri, EN01
+Enugu East, EN01
+Enugu South, EN01
+Enugu North, EN01
+Ezeagu, EN01
+Igbo Eze North, EN01
+Igbi Etiti, EN01
+Nsukka, EN01
+Oji River, EN01
+Undenu, EN01
+Uzo-Uwani, EN01
+Udi, EN01
+Akko, GO01
+Balanga, GO01
+Billiri, GO01
+Dukku, GO01
+Dunakaye, GO01
+Gombe, GO01
+Kaltungo, GO01
+Kwami, GO01
+Nafada/Bajoga, GO01
+Shomgom, GO01
+Yamaltu/Deba, GO01
+Aboh-Mbaise, IM01
+Ahiazu-Mbaise, IM01
+Ehime-Mbaino, IM01
+Ezinihitte, IM01
+Ideato North, IM01
+Ideato South, IM01
+Ihitte/Uboma, IM01
+Ikeduru, IM01
+Isiala Mbano, IM01
+Isu, IM01
+Mbaitoli, IM01
+Ngor Okpala, IM01
+Njaba, IM01
+Nwangele, IM01
+Nkwerre, IM01
+Obowo, IM01
+Ohaji/Egbema, IM01
+Okigwe, IM01
+Onuimo, IM01
+Orlu, IM01
+Orsu, IM01
+Oru West, IM01
+Oru East, IM01
+Owerri, IM01
+Owerri North, IM01
+Owerri South, IM01
+Auyo, JI01
+Babura, JI01
+Birnin-Kudu, JI01
+Birniwa, JI01
+Buji, JI01
+Dutse, JI01
+Garki, JI01
+Gagarawa, JI01
+Gumel, JI01
+Guri, JI01
+Gwaram, JI01
+Gwiwa, JI01
+Hadejia, JI01
+Jahun, JI01
+Kafin-Hausa, JI01
+Kaugama, JI01
+Kazaure, JI01
+Kirikasamma, JI01
+Birnin-Magaji, JI01
+Maigatari, JI01
+Malam Madori, JI01
+Miga, JI01
+Ringim, JI01
+Roni, JI01
+Sule Tankarkar, JI01
+Taura, JI01
+Yankwashi, JI01
+Birnin Gwari, KD01
+Chikun, KD01
+Giwa, KD01
+Kajuru, KD01
+Igabi, KD01
+Ikara, KD01
+Jaba, KD01
+Jema'a, KD01
+Kachia, KD01
+Kaduna North, KD01
+Kaduna South, KD01
+Kagarko, KD01
+Kauru, KD01
+Kubau, KD01
+Kudan, KD01
+Lere, KD01
+Makarfi, KD01
+Sabon Gari, KD01
+Sanga, KD01
+Soba, KD01
+Zangon Kataf, KD01
+Zaria, KD01
+Ajingi, KN01
+Albasu, KN01
+Bagwai, KN01
+Bebeji, KN01
+Bichi, KN01
+Bunkure, KN01
+Dala, KN01
+Dambatta, KN01
+Dawakin Kudu, KN01
+Dawakin Tofa, KN01
+Doguwa, KN01
+Fagge, KN01
+Gabasawa, KN01
+Garko, KN01
+Garun Mallam, KN01
+Gaya, KN01
+Gezawa, KN01
+Gwale, KN01
+Gwarzo, KN01
+Kabo, KN01
+Kano Municipal, KN01
+Karaye, KN01
+Kibiya, KN01
+Kiru, KN01
+Kumbotso, KN01
+Kunchi, KN01
+Kura, KN01
+Madobi, KN01
+Makoda, KN01
+Minjibir, KN01
+Nasarawa, KN01
+Rano, KN01
+Rimin Gado, KN01
+Rogo, KN01
+Shanono, KN01
+Sumaila, KN01
+Takai, KN01
+Tarauni, KN01
+Tofa, KN01
+Tsanyawa, KN01
+Tudun Wada, KN01
+Ungogo, KN01
+Warawa, KN01
+Wudil, KN01
+Bakori, KT01
+Batagarawa, KT01
+Batsari, KT01
+Baure, KT01
+Bindawa, KT01
+Charanchi, KT01
+Dan-Musa, KT01
+Dandume, KT01
+Danja, KT01
+Daura, KT01
+Dutsi, KT01
+Dutsin-Ma, KT01
+Faskari, KT01
+Funtua, KT01
+Ingawa, KT01
+Jibia, KT01
+Kafur, KT01
+Kaita, KT01
+Kankara, KT01
+Kankia, KT01
+Katsina, KT01
+Kurfi, KT01
+Mai'Adua, KT01
+Malumfashi, KT01
+Mani, KT01
+Mashi, KT01
+Matazu, KT01
+Musawa, KT01
+Rimi, KT01
+Sabuwa, KT01
+Safana, KT01
+Sandamu, KT01
+Zango, KT01
+Aliero, KE01
+Arewa Dandi, KE01
+Argungu, KE01
+Augie, KE01
+Bagudo, KE01
+Birnin Kebbi, KE01
+Bunza, KE01
+Dandi, KE01
+Danko, KE01
+Fakai, KE01
+Gwandu, KE01
+Jega, KE01
+Kalgo, KE01
+Koko/Besse, KE01
+Maiyama, KE01
+Ngaski, KE01
+Sakaba, KE01
+Shanga, KE01
+Suru, KE01
+Wasagu/Danko, KE01
+Yauri, KE01
+Zuru, KE01
+Adavi, KO01
+Ajaokuta, KO01
+Ankpa, KO01
+Bassa, KO01
+Dekina, KO01
+Yagba East, KO01
+Ibaji, KO01
+Idah, KO01
+Igalamela-Odolu, KO01
+Ijumu, KO01
+Kabba/Bunu, KO01
+Kogi, KO01
+Mopa-Muro, KO01
+Ofu, KO01
+Ogori/Magongo, KO01
+Okehi, KO01
+Okene, KO01
+Olamaboro, KO01
+Omala, KO01
+Yagba West, KO01
+Asa, KW01
+Baruten, KW01
+Edu, KW01
+Ekiti, KW01
+Ifelodun, KW01
+Ilorin South, KW01
+Ilorin West, KW01
+Ilorin East, KW01
+Irepodun, KW01
+Isin, KW01
+Kaiama, KW01
+Moro, KW01
+Offa, KW01
+Oke-Ero, KW01
+Oyun, KW01
+Pategi, KW01
+Agege, LA01
+Alimosho, LA01
+Ifelodun, LA01
+Amuwo-Odofin, LA01
+Apapa, LA01
+Badagry, LA01
+Epe, LA01
+Eti-Osa, LA01
+Ibeju-Lekki, LA01
+Ifako-Ijaiye, LA01
+Ikeja, LA01
+Ikorodu, LA01
+Kosofe, LA01
+Lagos Island, LA01
+Lagos Mainland, LA01
+Mushin, LA01
+Ojo, LA01
+Oshodi-Isolo, LA01
+Shomolu, LA01
+Surulere, LA01
+Akwanga, NA01
+Awe, NA01
+Doma, NA01
+Karu, NA01
+Keana, NA01
+Keffi, NA01
+Kokona, NA01
+Lafia, NA01
+Nasarawa, NA01
+Nassarawa/Eggon, NA01
+Obi, NA01
+Toto, NA01
+Wamba, NA01
+Agaie, NI01
+Agwara, NI01
+Bida, NI01
+Borgu, NI01
+Bosso, NI01
+Chanchaga, NI01
+Edati, NI01
+Gbako, NI01
+Gurara, NI01
+Katcha, NI01
+Kontagora, NI01
+Lapai, NI01
+Lavun, NI01
+Magama, NI01
+Mariga, NI01
+Mokwa, NI01
+Munya, NI01
+Paikoro, NI01
+Rafi, NI01
+Shiroro, NI01
+Suleja, NI01
+Wushishi, NI01
+Abeokuta South, OG01
+Abeokuta North, OG01
+Ado-Odo/Ota, OG01
+Agbado South, OG01
+Agbado North, OG01
+Ewekoro, OG01
+Idarapo, OG01
+Ifo, OG01
+Ijebu East, OG01
+Ijebu North, OG01
+Ikenne, OG01
+Ilugun Alaro, OG01
+Imeko Afon, OG01
+Ipokia, OG01
+Obafemi/Owode, OG01
+Odeda, OG01
+Odogbolu, OG01
+Ogun Waterside, OG01
+Sagamu, OG01
+Akoko North, ON01
+Akoko North East, ON01
+Akoko South East, ON01
+Akoko South, ON01
+Akure North, ON01
+Akure, ON01
+Idanre, ON01
+Ifedore, ON01
+Ese-Odo, ON01
+Ilaje, ON01
+Ilaje Oke-Igbo, ON01
+Irele, ON01
+Odigbo, ON01
+Okitipupa, ON01
+Ondo, ON01
+Ondo East, ON01
+Ose, ON01
+Owo, ON01
+Atakumosa West, OS01
+Atakumosa East, OS01
+Ayeda-Ade, OS01
+Ayedire, OS01
+Bolawaduro, OS01
+Boripe, OS01
+Ede, OS01
+Ede North, OS01
+Egbedore, OS01
+Ejigbo, OS01
+Ife North, OS01
+Ife Central, OS01
+Ife South, OS01
+Ife East, OS01
+Ifedayo, OS01
+Ifelodun, OS01
+Ilesha West, OS01
+Ila-Orangun, OS01
+Ilesha East, OS01
+Irepodun, OS01
+Irewole, OS01
+Isokan, OS01
+Iwo, OS01
+Obokun, OS01
+Odo-Otin, OS01
+Ola Oluwa, OS01
+Olorunda, OS01
+Oriade, OS01
+Orolu, OS01
+Osogbo, OS01
+Afijio, OY01
+Akinyele, OY01
+Atiba, OY01
+Atigbo, OY01
+Egbeda, OY01
+Ibadan, OY01
+Ibadan North East, OY01
+Ibadan Central, OY01
+Ibadan South East, OY01
+Ibadan West South, OY01
+Ibarapa East, OY01
+Ibarapa North, OY01
+Ido, OY01
+Ifedapo, OY01
+Ifeloju, OY01
+Irepo, OY01
+Iseyin, OY01
+Itesiwaju, OY01
+Iwajowa, OY01
+Iwajowa Olorunshogo, OY01
+Kajola, OY01
+Lagelu, OY01
+Ogbomosho North, OY01
+Ogbomosho South, OY01
+Ogo Oluwa, OY01
+Oluyole, OY01
+Ona Ara, OY01
+Orelope, OY01
+Orire, OY01
+Oyo East, OY01
+Oyo West, OY01
+Saki East, OY01
+Saki West, OY01
+Surulere, OY01
+Barkin Ladi, PL01
+Bassa, PL01
+Bokkos, PL01
+Jos North, PL01
+Jos East, PL01
+Jos South, PL01
+Kanam, PL01
+Kiyom, PL01
+Langtang North, PL01
+Langtang South, PL01
+Mangu, PL01
+Mikang, PL01
+Pankshin, PL01
+Qua'an Pan, PL01
+Shendam, PL01
+Wase, PL01
+Abua/Odual, RI01
+Ahoada West, RI01
+Akuku-Toru, RI01
+Andoni, RI01
+Asari-Toru, RI01
+Bonny, RI01
+Degema, RI01
+Eleme, RI01
+Emohua, RI01
+Etche, RI01
+Gokana, RI01
+Ikwerre, RI01
+Oyigbo, RI01
+Khana, RI01
+Obio/Akpor, RI01
+Ogba/Egbema/Ndoni, RI01
+Ogu/Bolo, RI01
+Okrika, RI01
+Omumma, RI01
+Opobo/Nkoro, RI01
+Port Harcourt, RI01
+Tai, RI01
+Binji, SO01
+Bodinga, SO01
+Dange/Shuni, SO01
+Gada, SO01
+Goronyo, SO01
+Gudu, SO01
+Gwadabawa, SO01
+Illela, SO01
+Kebbe, SO01
+Kware, SO01
+Rabah, SO01
+Sabon Birni, SO01
+Shagari, SO01
+Silame, SO01
+Sokoto South, SO01
+Sokoto North, SO01
+Tambuwal, SO01
+Tangaza, SO01
+Tureta, SO01
+Wamakko, SO01
+Wurno, SO01
+Yabo, SO01
+Ardo Kola, TA01
+Bali, TA01
+Donga, TA01
+Gashaka, TA01
+Gassol, TA01
+Ibi, TA01
+Jalingo, TA01
+K/Lamido, TA01
+Kurmi, TA01
+Lau, TA01
+Sardauna, TA01
+Tarum, TA01
+Ussa, TA01
+Wukari, TA01
+Yorro, TA01
+Zing, TA01
+Bade, YO01
+Bursari, YO01
+Damaturu, YO01
+Fika, YO01
+Fune, YO01
+Geidam, YO01
+Gogaram, YO01
+Gujba, YO01
+Gulani, YO01
+Jakusko, YO01
+Karasuwa, YO01
+Machina, YO01
+Nangere, YO01
+Nguru, YO01
+Potiskum, YO01
+Tarmuwa, YO01
+Yunusari, YO01
+Yusufari, YO01
+Yobe, YO01
+Anka, ZA01
+Bakura, ZA01
+Birnin Magaji/Kiyaw, ZA01
+Bukkuyum, ZA01
+Bungudu, ZA01
+Gummi, ZA01
+Gusau, ZA01
+Kaura Namoda, ZA01
+Maradun, ZA01
+Maru, ZA01
+Shinkafi, ZA01
+Talata Mafara, ZA01
+Zurmi, ZA01
+Abaji, FC01
+Bwari, FC01
+Gwagwalada, FC01
+Kuje, FC01
+Abuja Municipal, FC01
+Kwali, FC01

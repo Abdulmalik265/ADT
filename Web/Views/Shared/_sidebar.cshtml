@@ -1,0 +1,209 @@
+﻿@using Core.Constants
+
+<div class="nk-sidebar nk-sidebar-fixed " data-content="sidebarMenu">
+
+    <div class="nk-sidebar-element nk-sidebar-head">
+        <div class="nk-menu-trigger">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu">
+                <em class="icon ni ni-arrow-left"></em>
+            </a>
+            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu">
+                <em class="icon ni ni-menu"></em>
+            </a>
+        </div>
+    </div>
+    <!-- .nk-sidebar-element -->
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-body" data-simplebar>
+            <div class="nk-sidebar-content">
+                <div class="nk-sidebar-menu">
+                    <ul class="nk-menu">
+
+                        @if (User.IsInRole(RoleConstants.SuperAdmin))
+                        {
+                            <li class="nk-menu-heading">
+                                <h6 class="overline-title text-primary-alt">Dashboards</h6>
+                            </li>
+
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="/" class="nk-menu-link">
+                                    <span class="nk-menu-icon">
+                                        <em class="icon ni ni-dashboard-fill"></em>
+                                    </span>
+                                    <span class="nk-menu-text">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <!-- .nk-menu-item -->
+                        } 
+                        @if (User.IsInRole(RoleConstants.Director) || User.IsInRole(RoleConstants.Coordinator))
+                        {
+                            <li class="nk-menu-heading pt-2">
+                                <h6 class="overline-title text-primary-alt">Profile</h6>
+                            </li>
+
+                            <!-- .nk-menu-item -->
+                            @if (User.IsInRole(RoleConstants.Director))
+                            {
+                                <li class="nk-menu-item pt-2">
+                                    <a asp-action="Profile" asp-controller="Directors" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                        <span class="nk-menu-text">Profile</span>
+                                    </a>
+                                </li>
+
+                            }
+                            @if (User.IsInRole(RoleConstants.Coordinator))
+                            {
+                                <li class="nk-menu-item">
+                                    <a asp-action="Profile" asp-controller="Admin" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                        <span class="nk-menu-text">Profile</span>
+                                    </a>
+                                </li>
+
+                            }
+
+                            <!-- .nk-menu-item -->
+                        }
+
+                        <li class="nk-menu-heading pt-2">
+                            <h6 class="overline-title text-primary-alt">Membership</h6>
+                        </li>
+                        @if (User.IsInRole(RoleConstants.SuperAdmin) || User.IsInRole(RoleConstants.Director))
+                        {
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a asp-action="Index" asp-controller="Directors" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-location"></em></span>
+                                    <span class="nk-menu-text">Directors</span>
+                                </a>
+                            </li>
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a asp-action="Index" asp-controller="Admin" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                    <span class="nk-menu-text">Admins</span>
+                                </a>
+                            </li>
+
+                        }
+                        @if (User.IsInRole(RoleConstants.Coordinator))
+                        {
+
+                            <li class="nk-menu-item">
+                                <a asp-action="Index" asp-controller="Member" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                                    <span class="nk-menu-text">Members</span>
+                                </a>
+                            </li>
+
+                        }
+
+                        <li class="nk-menu-heading pt-3">
+                            <h6 class="overline-title text-primary-alt">Messaging</h6>
+                        </li>
+                        @if (User.IsInRole(RoleConstants.Coordinator))
+                        {
+
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a asp-action="SendSms" asp-controller="Admin" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
+                                    <span class="nk-menu-text">SMS(Reminder)</span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole(RoleConstants.Coordinator))
+                        {
+                            <li class="nk-menu-heading pt-2">
+                                <h6 class="overline-title text-primary-alt">Reports</h6>
+                            </li>
+
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item has-sub">
+                                <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <span class="nk-menu-icon">
+                                        <em class="icon ni ni-reports"></em>
+                                    </span><span class="nk-menu-text">Reports</span>
+                                </a>
+                                <ul class="nk-menu-sub">
+                                    <li class="nk-menu-item">
+                                        <a asp-action="GenerateAttendance" asp-controller="Report" class="nk-menu-link">
+                                            <span class="nk-menu-text">Print Attendance</span>
+                                        </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a asp-action="GenerateMembersReport" asp-controller="Report" class="nk-menu-link">
+                                            <span class="nk-menu-text">Payment Report</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+
+                        @if (User.IsInRole(RoleConstants.SuperAdmin) || User.IsInRole(RoleConstants.Director))
+                        {
+
+                            <!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a asp-action="SendSmS" asp-controller="Directors" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-file-docs"></em></span>
+                                    <span class="nk-menu-text">SMS</span>
+                                </a>
+                            </li>
+
+                        }
+                        <!-- .nk-menu-item -->
+                        <!-- .nk-menu-item -->
+                        @if (User.IsInRole(RoleConstants.SuperAdmin) || User.IsInRole(RoleConstants.Director))
+                        {
+                            <!-- .nk-menu-item -->
+
+                            <li class="nk-menu-heading pt-2">
+                                <h6 class="overline-title text-primary-alt">Reports</h6>
+                            </li>
+                            <li class="nk-menu-item has-sub">
+                                <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <span class="nk-menu-icon">
+                                        <em class="icon ni ni-reports"></em>
+                                    </span><span class="nk-menu-text">Reports</span>
+                                </a>
+                                <ul class="nk-menu-sub">
+                                    <li class="nk-menu-item">
+                                        <a asp-action="GenerateAttendance" asp-controller="Report" class="nk-menu-link">
+                                            <span class="nk-menu-text">Print Attendance</span>
+                                        </a>
+                                    </li>
+                                    @if (User.IsInRole(RoleConstants.SuperAdmin))
+                                    {
+                                        <li class="nk-menu-item">
+                                            <a asp-action="GenerateDirectorsReport" asp-controller="Report" class="nk-menu-link">
+                                                <span class="nk-menu-text">Payment Report</span>
+                                            </a>
+                                        </li>
+
+                                    }
+                                    @if (User.IsInRole(RoleConstants.Director))
+                                    {
+                                        <li class="nk-menu-item">
+                                            <a asp-action="GenerateAdminsReport" asp-controller="Report" class="nk-menu-link">
+                                                <span class="nk-menu-text">Payment Report</span>
+                                            </a>
+                                        </li>
+
+                                    }
+                                </ul>
+                            </li>
+                            <!-- .nk-menu-item -->
+                        }
+
+
+                    </ul><!-- .nk-menu -->
+                </div><!-- .nk-sidebar-menu -->
+            </div><!-- .nk-sidebar-content -->
+        </div><!-- .nk-sidebar-body -->
+    </div><!-- .nk-sidebar-element -->
+</div>

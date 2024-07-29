@@ -1,0 +1,96 @@
+﻿@model Core.Models.AttendenceReportViewModel
+@using Core.Constants
+@using Core.Enum
+
+@if (TempData.ContainsKey("Success"))
+{
+    <div class="example-alert">
+        <div class="alert alert-success alert-icon">
+            <em class="icon ni ni-alert-circle"></em> <strong>Attention! </strong> @TempData["Success"].ToString() <button class="close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("Error"))
+{
+    <div class="example-alert">
+        <div class="alert alert-danger alert-icon">
+            <em class="icon ni ni-alert-circle"></em> <strong>Attention! </strong> @TempData["Error"].ToString() <button class="close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+
+<div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+    <div class="nk-block-head-content text-center">
+        <h2 class="nk-block-title fw-normal">Members Payment Report</h2>
+        <div class="nk-block-des">
+            <p class="lead">Generate Payment Report!</p>
+        </div>
+    </div>
+</div><!-- .nk-block-head -->
+
+<div class="nk-block">
+    <div class="card card-bordered">
+        <div class="card-inner card-inner-xl">
+            <article class="entry">
+                <form method="post" onsubmit="ConfirmSubmit(this, event)" asp-action="GenerateMembersReport" asp-controller="Report">
+                    <div class="row g-3">
+                        <input hidden asp-for="LgaId" value="@ViewBag.lgaId" />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Select Month</label>
+                                <div class="form-control-wrap">
+                                    <select asp-for="Month" asp-items ="Html.GetEnumSelectList<Month>()" class="form-select">
+                                       
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Select Year</label>
+                                <div class="form-control-wrap">
+                                    <select asp-for="Year" class="form-select">
+                                        @for (int year = 2024; year <= 2027; year++)
+                                        {
+                                            <option value="@year">@year</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Generate</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </div>
+</div><!-- .nk-block -->
+@section scripts {
+    <script>
+        function ConfirmSubmit(form, event) {
+            event.preventDefault();
+
+            if (form.checkValidity()) {
+                Swal.fire({
+                    title: "Generate payment report?",
+                    text: "Would you like to generate this payment report?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Generate!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
+        }
+    </script>
+}

@@ -1,0 +1,128 @@
+﻿@using Core.Enum
+@model Core.Models.DirectorViewModel
+@{
+    ViewData["Title"] = "New Director registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <p style="color:#0971FE;">Fill the form below to add a new Director. Hint: please provide accurate information concerning the Admin.</p>
+
+            </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+    </div><!-- .nk-block-head -->
+    <div class="card card-bordered">
+        <div class="card-inner ">
+            <form method="post" id="submitform" enctype="multipart/form-data" onsubmit="ConfirmSubmit(this, event)">
+                <div class="row gy-4">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">First Name @* <span style="color:red;"></span> *@</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" required asp-for="FirstName" placeholder="First Name" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Surname @* <span style="color:red;">*</span> *@</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" required asp-for="SurName" placeholder="Surname" />
+                                <span asp-validation-for="SurName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Other Name</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" asp-for="OtherName" placeholder="Other Name" />
+                                <span asp-validation-for="OtherName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" required asp-for="PhoneNumber" placeholder="Phone Number" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" required asp-for="Email" placeholder="User Name" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <div class="form-control-wrap">
+                                <select asp-items="Html.GetEnumSelectList<Gender>()" required asp-for="Gender" class="form-select"></select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="StateId" class="form-label">State</label>
+                            <div class="form-control-wrap">
+                                <select asp-items="ViewBag.states" asp-for="StateId"  required class="form-select">
+                                    <option selected disabled>Select State</option>
+                                </select>
+                                <span asp-validation-for="StateId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-12 col-xxl-3">
+                        <div class="form-group">
+                            <button type="submit" id="subbtn" class="btn btn-primary btn-lg">Add New Director</button>
+                            <a type="button" asp-action="Index" asp-controller="Directors" class="btn btn-danger btn-lg">Cancel</a>
+                        </div>
+                    </div><!--col-->
+
+                </div><!--row-->
+
+            </form>
+        </div><!-- .card-inner-group -->
+    </div><!-- .card -->
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+
+        
+        function ConfirmSubmit(form, event) {
+            event.preventDefault();
+            if (form.checkValidity()) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Would you like to add this Director?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Add!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
+        }
+    </script>
+
+}

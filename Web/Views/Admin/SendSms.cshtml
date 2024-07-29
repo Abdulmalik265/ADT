@@ -1,0 +1,109 @@
+﻿@model Core.Models.AdminViewModel
+@using Core.Enum
+@using Core.Models
+@using System.Text.Json
+@{
+    ViewData["Title"] = "SMS";
+    Layout = "_Layout";
+}
+
+@if (TempData.ContainsKey("BaseResponse"))
+{
+    var baseResponseJson = TempData["BaseResponse"] as string;
+    var baseResponse = JsonSerializer.Deserialize<BaseResponse>(baseResponseJson);
+
+    if (baseResponse.Status)
+    {
+        <div class="alert alert-success alert-dismissible alert-icon">
+            <em class="icon ni ni-check-circle"></em> <strong>@baseResponse.Message</strong>
+            <button class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible alert-icon">
+            <em class="icon ni ni-cross-circle"></em> <strong>@baseResponse.Message</strong>
+            <button class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+
+
+
+<div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+    <div class="nk-block-head-content text-center">
+        <h2 class="nk-block-title fw-normal">Send SMS Reminder or Special Message!</h2>
+        <div class="nk-block-des">
+            <p class="lead">Select the option you intend to use!</p>
+        </div>
+    </div>
+</div><!-- .nk-block-head -->
+<div class="nk-block">
+    <div class="card card-bordered">
+        <div class="card-inner card-inner-xl">
+            <article class="entry">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-group text-center">
+                            <form id="reminderForm" method="post" asp-controller="Admin" asp-action="SendReminder">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="confirmReminder()">Send Reminder</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group text-center">
+                            <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#specialMessageModal">Send Special Message</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div><!-- .nk-block -->
+<!-- Special Message Modal -->
+<div class="modal fade" id="specialMessageModal" tabindex="-1" role="dialog" aria-labelledby="specialMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="specialMessageModalLabel">Send Special Message</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-controller="Admin" asp-action="SendReminder">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="specialMessage">Message</label>
+                        <textarea class="form-control" id="specialMessage" name="Message" rows="5" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript">
+        function confirmReminder() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Are you sure you want to remind all the members for their monthly payment?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, remind them!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("reminderForm").submit();
+                }
+            });
+        }
+    </script>
+}
